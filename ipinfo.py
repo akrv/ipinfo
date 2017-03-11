@@ -3,12 +3,12 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-    return str(request.headers.getlist("X-Forwarded-For"))
+    return str(request.headers.getlist("X-Forwarded-For")[0])
 
 @app.route("/json", methods=["GET"])
 def get_my_ip():
-    
-    return jsonify({'ip': request.headers.getlist("X-Forwarded-For")}), 200
+
+    return jsonify({'ip': request.headers.getlist("X-Forwarded-For")[0]}), 200
 
 if __name__ == "__main__":
     app.run(port=25500)
