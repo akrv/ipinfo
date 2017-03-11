@@ -7,6 +7,7 @@ def hello():
 
 @app.route("/json", methods=["GET"])
 def get_my_ip():
+    print (request.headers.getlist("X-Forwarded-For"))
     return jsonify({'ip': request.remote_addr}), 200
 
 if __name__ == "__main__":
